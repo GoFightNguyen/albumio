@@ -7,7 +7,7 @@
 3. Make your changes;
    use [standardized commit messages](#standardized-commit-messages)
 
-## devcontainer
+### devcontainer
 
 This project relies on [Development Containers](https://containers.dev/).
 
@@ -16,7 +16,7 @@ This project relies on [Development Containers](https://containers.dev/).
 > install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers);
 > this extension is included in the [Remote Development extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
 
-## Standardized Commit Messages
+### Standardized Commit Messages
 
 Commit messages should follow the conventional form `type(scope): message`.
 No tool, like commitizen, is configured to enforce the form because it is unnecessary for now.
