@@ -6,6 +6,7 @@ module.exports = {
     "plugin:@typescript-eslint/stylistic-type-checked",
     "prettier",
   ],
+  ignorePatterns: ["**/*.js"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
