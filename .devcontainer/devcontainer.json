@@ -20,7 +20,10 @@
   "customizations": {
     "vscode": {
       // Add the IDs of extensions you want installed when the container is created.
-      "extensions": ["esbenp.prettier-vscode"]
+      "extensions": [
+        "arcanis.vscode-zipfs", // required by yarn so TypeScript can work with plug'n'play
+        "esbenp.prettier-vscode"
+      ]
     }
   }
 
