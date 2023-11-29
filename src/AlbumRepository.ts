@@ -1,4 +1,4 @@
-import { Album } from "./Album";
+import { Album } from './Album';
 
 export interface AlbumRepository {
   all(): Promise<Album[]>;

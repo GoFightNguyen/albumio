@@ -2,6 +2,7 @@
   "name": "albumio",
   "packageManager": "yarn@4.0.2",
   "scripts": {
+    "format:all": "yarn prettier . --write",
     "postinstall": "husky install",
     "test": "jest"
   },

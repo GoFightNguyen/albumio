@@ -1,8 +1,8 @@
-import { Album } from "./Album";
-import { AlbumRepository } from "./AlbumRepository";
-import { InMemoryAlbumRepository } from "./InMemoryAlbumRepository";
+import { Album } from './Album';
+import { AlbumRepository } from './AlbumRepository';
+import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
 
-describe("Feature: Adding Albums", () => {
+describe('Feature: Adding Albums', () => {
   test(`
   Given these albums are already in my collection:
   'album 1',
@@ -16,15 +16,15 @@ describe("Feature: Adding Albums", () => {
   'album 3'
   'album 4'`, async () => {
     // Given
-    const album1: Album = new SeedAlbum("album 1");
-    const album2: Album = new SeedAlbum("album 2");
+    const album1: Album = new SeedAlbum('album 1');
+    const album2: Album = new SeedAlbum('album 2');
     const sut: AlbumRepository = new InMemoryAlbumRepository();
     await sut.add(album1);
     await sut.add(album2);
 
     // When
-    const album3: Album = new SeedAlbum("album 3");
-    const album4: Album = new SeedAlbum("album 4");
+    const album3: Album = new SeedAlbum('album 3');
+    const album4: Album = new SeedAlbum('album 4');
     await sut.add(album3);
     await sut.add(album4);
 
