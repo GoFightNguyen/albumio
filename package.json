@@ -3,6 +3,7 @@
   "packageManager": "yarn@4.0.2",
   "scripts": {
     "format:all": "yarn prettier . --write",
+    "lint": "eslint",
     "postinstall": "husky install",
     "test": "jest",
     "test:ci": "jest --ci"
@@ -22,7 +23,7 @@
   },
   "lint-staged": {
     "**/*.{js,ts}": [
-      "eslint --fix",
+      "yarn lint --fix",
       "prettier --write --ignore-unknown"
     ],
     "!**/*.{js,ts}": "prettier --write --ignore-unknown"
