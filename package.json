@@ -4,7 +4,8 @@
   "scripts": {
     "format:all": "yarn prettier . --write",
     "postinstall": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "jest --ci"
   },
   "devDependencies": {
     "@types/jest": "^29.5.10",
