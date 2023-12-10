@@ -13,3 +13,15 @@ jobs:
       - run: corepack enable && yarn -v
       - run: yarn
       - run: yarn test:ci
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - name: use node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - run: corepack enable && yarn -v
+      - run: yarn
+      - run: yarn lint
