@@ -1,6 +1,7 @@
 import { Album } from './Album';
 import { AlbumRepository } from './AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
+import * as AlbumService from './AlbumService';
 
 describe('Feature: Adding Albums', () => {
   test(`
@@ -36,6 +37,23 @@ describe('Feature: Adding Albums', () => {
     expect(findMatchingAlbum(albums, album3)).toBeDefined();
     expect(findMatchingAlbum(albums, album4)).toBeDefined();
   });
+
+  test.failing(
+    `
+  Given I use Spotify
+  When I add an Album by Spotify ID 13nO8KPBlBff3c6qEDAUpd
+  Then the Album "Canopy" is added to my catalog
+  `,
+    async () => {
+      const repo = new InMemoryAlbumRepository();
+      const sut = AlbumService.create(repo);
+      await sut.add('13nO8KPBlBff3c6qEDAUpd');
+
+      const albums = await repo.all();
+      const expected = new SeedAlbum('Canopy');
+      expect(findMatchingAlbum(albums, expected)).toBeDefined();
+    },
+  );
 
   const findMatchingAlbum = (albums: Album[], album: Album) =>
     albums.find((a) => a.metadata.name === album.metadata.name);
