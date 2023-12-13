@@ -46,13 +46,16 @@ describe('Feature: Adding Albums', () => {
   Then the Album "Canopy" is added to my catalog
   `,
     async () => {
-      const repo = new InMemoryAlbumRepository();
+      const albumRepository = new InMemoryAlbumRepository();
       const thirdPartyMusicService = new SpotifyThirdPartyMusicService();
-      const sut = AlbumService.create(repo, thirdPartyMusicService);
+      const sut = AlbumService.create({
+        albumRepository,
+        thirdPartyMusicService,
+      });
 
       await sut.add('13nO8KPBlBff3c6qEDAUpd');
 
-      const albums = await repo.all();
+      const albums = await albumRepository.all();
       const expected = new SeedAlbum('Canopy');
       expect(findMatchingAlbum(albums, expected)).toBeDefined();
     },
