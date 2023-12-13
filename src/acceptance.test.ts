@@ -2,6 +2,7 @@ import { Album } from './Album';
 import { AlbumRepository } from './AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
 import * as AlbumService from './AlbumService';
+import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 
 describe('Feature: Adding Albums', () => {
   test(`
@@ -46,7 +47,9 @@ describe('Feature: Adding Albums', () => {
   `,
     async () => {
       const repo = new InMemoryAlbumRepository();
-      const sut = AlbumService.create(repo);
+      const thirdPartyMusicService = new SpotifyThirdPartyMusicService();
+      const sut = AlbumService.create(repo, thirdPartyMusicService);
+
       await sut.add('13nO8KPBlBff3c6qEDAUpd');
 
       const albums = await repo.all();

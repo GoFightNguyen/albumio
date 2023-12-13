@@ -1,13 +1,13 @@
-import { Album } from './Album';
 import { AlbumRepository } from './AlbumRepository';
+import { ThirdPartyMusicService } from './ThirdPartyMusicService';
 
-export function create(albumRepository: AlbumRepository) {
+export function create(
+  albumRepository: AlbumRepository,
+  thirdPartyMusicService: ThirdPartyMusicService,
+) {
   return {
     async add(thirdPartyId: string) {
-      console.log(thirdPartyId);
-      const album: Album = {
-        metadata: { name: thirdPartyId },
-      };
+      const album = await thirdPartyMusicService.getAlbum(thirdPartyId);
       await albumRepository.add(album);
     },
   };

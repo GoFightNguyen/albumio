@@ -22,3 +22,20 @@ Our TypeScript style is inspired by the [style guidelines](https://github.com/Mi
 
 1. Keep `index.ts` free from implementation, it should only contain re-exports.
 1. If a file has a single or a main export, name the file after the export.
+
+## API Design
+
+This section describes guidelines for designing APIs.
+
+1. Keep [SOLID](https://en.wikipedia.org/wiki/SOLID) principles in mind.
+1. Consume interfaces rather than concrete implementations.
+1. Prefer classes for encapsulating functionality and implementing interfaces.
+1. Suffix the name of concrete implementations with the name of the implemented interface.
+   Use a prefix that describes the behavior of the implementation, or use a `Default` prefix.
+
+   ```ts
+   interface AlbumRepository {...}
+
+   class InMemoryAlbumRepository implements AlbumRepository { /* persists Albums only in-memory */ }
+   class MongoDBAlbumRepository implement AlbumRepository { /* persists Albums in MongoDB*/ }
+   ```
