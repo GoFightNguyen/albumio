@@ -39,3 +39,56 @@ This section describes guidelines for designing APIs.
    class InMemoryAlbumRepository implements AlbumRepository { /* persists Albums only in-memory */ }
    class MongoDBAlbumRepository implement AlbumRepository { /* persists Albums in MongoDB*/ }
    ```
+
+1. Keep constructors private, prefer static factory methods for creating instances.
+
+   ```ts
+   class MongoDBAlbumRepository implements AlbumRepository {
+     // Use `create` for the main way to create an instance.
+     static create(options?: AlbumRepositoryOptions) {
+       /* ... */
+     }
+
+     // If there are multiple different types of instances that can be
+     // created, suffix the create method.
+     static createWithCaching(options?: AlbumRepositoryOptions) {
+       /* ... */
+     }
+
+     private constructor(/* ... */) {
+       /* ... */
+     }
+   }
+   ```
+
+1. When a type relates directly to other symbols, use the name of those as prefix for the type.
+
+   ```ts
+   // Option types should be prefixed with the name of the operation.
+   function upgradeWidget(options: UpgradeWidgetOptions) {}
+   function activateWidget(options: ActivateWidgetOptions) {}
+
+   // An exception to this are create methods, where the name of the thing
+   // being created may be used as the prefix instead.
+   function createWidget(options: WidgetOptions) {}
+
+   // In this case the related names for request types are `ReportsApi` and
+   // the method name. If there is a low risk of conflict we can keep them
+   // short by only prefixing with the method name, but if there is a higher
+   // risk of conflict then we would want to use the full prefix instead, while
+   // omitting redundant parts, i.e. `ReportsApiUploadRequest.
+   interface ReportsApi {
+     uploadReports(request: UploadReportsRequest): Promise<void>;
+     deleteReport(request: DeleteReportRequest): Promise<void>;
+   }
+   ```
+
+1. When there is a significant number of arguments to a function or method, prefer to use a single options object as the argument, rather than many positional arguments.
+
+   ```ts
+   // Bad
+   function createWidget(id: string, name: string, width: number) {}
+
+   // Good
+   function createWidget(options: CreateWidgetOptions) {}
+   ```
