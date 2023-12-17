@@ -1,7 +1,7 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
-import { Album } from './Album';
+import { Album } from '../Album';
 import { SpotifyConfig } from './SpotifyConfig';
-import { ThirdPartyMusicService } from './ThirdPartyMusicService';
+import { ThirdPartyMusicService } from '../ThirdPartyMusicService';
 
 export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
   private readonly _client: SpotifyApi;

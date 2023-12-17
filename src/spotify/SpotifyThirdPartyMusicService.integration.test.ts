@@ -1,4 +1,4 @@
-import { Album } from './Album';
+import { Album } from '../Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 

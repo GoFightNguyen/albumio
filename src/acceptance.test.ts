@@ -2,8 +2,8 @@ import { Album } from './Album';
 import { AlbumRepository } from './AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
 import * as AlbumService from './AlbumService';
-import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
-import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
+import { SpotifyThirdPartyMusicService } from './spotify/SpotifyThirdPartyMusicService';
+import { DotenvSpotifyConfig } from './spotify/DotenvSpotifyConfig';
 
 describe('Feature: Adding Albums', () => {
   test(`
