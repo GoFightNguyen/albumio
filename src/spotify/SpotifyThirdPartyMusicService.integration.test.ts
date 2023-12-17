@@ -26,6 +26,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
       );
       const actual = await sut.getAlbum('13nO8KPBlBff3c6qEDAUpd');
       const expected: Album = {
+        apiVersion: 'albumio/v1alpha1',
         metadata: {
           name: 'Canopy',
         },

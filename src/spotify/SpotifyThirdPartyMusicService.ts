@@ -20,6 +20,7 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
   async getAlbum(thirdPartyId: string): Promise<Album> {
     const album = await this._client.albums.get(thirdPartyId);
     const result: Album = {
+      apiVersion: 'albumio/v1alpha1',
       metadata: { name: album.name },
     };
     return result;
