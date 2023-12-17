@@ -1,5 +1,6 @@
 import {
   ANNOTATION_ALBUM_SPOTIFY_ID,
+  ANNOTATION_ALBUM_SPOTIFY_URI,
   Album,
   AlbumAnnotations,
 } from './domain/Album';
@@ -79,6 +80,7 @@ class SeedAlbum implements Album {
       name,
       annotations: {
         [ANNOTATION_ALBUM_SPOTIFY_ID]: '13nO8KPBlBff3c6qEDAUpd',
+        [ANNOTATION_ALBUM_SPOTIFY_URI]: 'spotify:album:13nO8KPBlBff3c6qEDAUpd',
       },
     };
   }

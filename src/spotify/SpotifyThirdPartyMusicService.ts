@@ -1,5 +1,9 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
-import { ANNOTATION_ALBUM_SPOTIFY_ID, Album } from '../domain/Album';
+import {
+  ANNOTATION_ALBUM_SPOTIFY_ID,
+  ANNOTATION_ALBUM_SPOTIFY_URI,
+  Album,
+} from '../domain/Album';
 import { SpotifyConfig } from './SpotifyConfig';
 import { ThirdPartyMusicService } from '../domain/ThirdPartyMusicService';
 
@@ -25,7 +29,8 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
       metadata: {
         name: album.name,
         annotations: {
-          [ANNOTATION_ALBUM_SPOTIFY_ID]: thirdPartyId,
+          [ANNOTATION_ALBUM_SPOTIFY_ID]: album.id,
+          [ANNOTATION_ALBUM_SPOTIFY_URI]: album.uri,
         },
       },
     };

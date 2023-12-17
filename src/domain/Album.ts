@@ -41,12 +41,29 @@ export interface Album {
  * @remarks
  *
  * This does not clearly identify the type of Spotify resource.
+ * If that is needed see {@link ANNOTATION_ALBUM_SPOTIFY_URI}
+ *
+ *
+ * Example: 13nO8KPBlBff3c6qEDAUpd
  *
  * See also:
  * {@link https://developer.spotify.com/documentation/web-api/concepts/spotify-uris-ids}
  */
 export const ANNOTATION_ALBUM_SPOTIFY_ID = 'spotify.com/id';
 
+/**
+ * The Spotify resource identifier of the Album.
+ *
+ * @remarks
+ *
+ * Example: spotify:album:13nO8KPBlBff3c6qEDAUpd
+ *
+ * See also:
+ * {@link https://developer.spotify.com/documentation/web-api/concepts/spotify-uris-ids}
+ */
+export const ANNOTATION_ALBUM_SPOTIFY_URI = 'spotify.com/uri';
+
 export interface AlbumAnnotations extends Record<string, string> {
   [ANNOTATION_ALBUM_SPOTIFY_ID]: string;
+  [ANNOTATION_ALBUM_SPOTIFY_URI]: string;
 }

@@ -1,4 +1,8 @@
-import { ANNOTATION_ALBUM_SPOTIFY_ID, Album } from '../domain/Album';
+import {
+  ANNOTATION_ALBUM_SPOTIFY_ID,
+  ANNOTATION_ALBUM_SPOTIFY_URI,
+  Album,
+} from '../domain/Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 
@@ -32,6 +36,8 @@ describe.only('SpotifyThirdPartyMusicService', () => {
           name: 'Canopy',
           annotations: {
             [ANNOTATION_ALBUM_SPOTIFY_ID]: '13nO8KPBlBff3c6qEDAUpd',
+            [ANNOTATION_ALBUM_SPOTIFY_URI]:
+              'spotify:album:13nO8KPBlBff3c6qEDAUpd',
           },
         },
       };
