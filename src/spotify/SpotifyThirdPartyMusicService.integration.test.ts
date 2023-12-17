@@ -1,4 +1,4 @@
-import { Album } from '../domain/Album';
+import { ANNOTATION_ALBUM_SPOTIFY_ID, Album } from '../domain/Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 
@@ -30,6 +30,9 @@ describe.only('SpotifyThirdPartyMusicService', () => {
         kind: 'Album',
         metadata: {
           name: 'Canopy',
+          annotations: {
+            [ANNOTATION_ALBUM_SPOTIFY_ID]: '13nO8KPBlBff3c6qEDAUpd',
+          },
         },
       };
       expect(actual).toEqual(expected);
