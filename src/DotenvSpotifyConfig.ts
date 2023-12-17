@@ -1,7 +1,7 @@
-import { Config } from './Config';
+import { SpotifyConfig } from './SpotifyConfig';
 import 'dotenv/config';
 
-export class DotenvConfig implements Config {
+export class DotenvSpotifyConfig implements SpotifyConfig {
   private readonly _config;
 
   private constructor() {
@@ -12,7 +12,7 @@ export class DotenvConfig implements Config {
   }
 
   static create() {
-    return new DotenvConfig();
+    return new DotenvSpotifyConfig();
   }
 
   get clientId() {

@@ -1,6 +1,6 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { Album } from './Album';
-import { Config } from './Config';
+import { SpotifyConfig } from './SpotifyConfig';
 import { ThirdPartyMusicService } from './ThirdPartyMusicService';
 
 export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
@@ -10,7 +10,7 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
     this._client = SpotifyApi.withClientCredentials(clientId, clientSecret);
   }
 
-  static fromConfig(config: Config) {
+  static fromConfig(config: SpotifyConfig) {
     return new SpotifyThirdPartyMusicService(
       config.clientId,
       config.clientSecret,

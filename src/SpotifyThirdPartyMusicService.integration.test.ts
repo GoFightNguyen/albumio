@@ -1,4 +1,4 @@
-import { DotenvConfig } from './DotenvConfig';
+import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 
 describe.only('SpotifyThirdPartyMusicService', () => {
@@ -14,7 +14,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
     });
 
     test('should throw an error when the album cannot be found', async () => {
-      const config = DotenvConfig.create();
+      const config = DotenvSpotifyConfig.create();
       const sut = SpotifyThirdPartyMusicService.fromConfig(config);
       await expect(sut.getAlbum('123')).rejects.toThrow(/invalid id/i);
     });
