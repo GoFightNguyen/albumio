@@ -67,7 +67,9 @@ describe('Feature: Adding Albums', () => {
 
 class SeedAlbum implements Album {
   readonly apiVersion = 'albumio/v1alpha1';
+  readonly kind = 'Album';
   metadata: { name: string };
+
   constructor(name: string) {
     this.metadata = { name };
   }

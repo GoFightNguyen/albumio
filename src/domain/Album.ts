@@ -7,6 +7,10 @@ export interface Album {
    */
   apiVersion: 'albumio/v1alpha1';
   /**
+   * The high-level type being described.
+   */
+  kind: 'Album';
+  /**
    * Metadata related to the Album.
    */
   metadata: {
