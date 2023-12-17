@@ -3,8 +3,7 @@ import { AlbumRepository } from './AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
 import * as AlbumService from './AlbumService';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
-import { Config } from './Config';
-import 'dotenv/config';
+import { DotenvConfig } from './DotenvConfig';
 
 describe('Feature: Adding Albums', () => {
   test(`
@@ -48,10 +47,7 @@ describe('Feature: Adding Albums', () => {
   Then the Album "Canopy" is added to my catalog
   `,
     async () => {
-      const config: Config = {
-        clientId: process.env.SPOTIFY_CLIENT_ID!,
-        clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
-      };
+      const config = DotenvConfig.create();
       const albumRepository = new InMemoryAlbumRepository();
       const thirdPartyMusicService =
         SpotifyThirdPartyMusicService.fromConfig(config);
