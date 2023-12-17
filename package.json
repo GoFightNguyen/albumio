@@ -27,5 +27,8 @@
       "prettier --write --ignore-unknown"
     ],
     "!**/*.{js,ts}": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@spotify/web-api-ts-sdk": "^1.1.2"
   }
 }

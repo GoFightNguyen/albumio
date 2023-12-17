@@ -869,6 +869,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@spotify/web-api-ts-sdk@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@spotify/web-api-ts-sdk@npm:1.1.2"
+  checksum: 5795e5261dfde6ca1c4555a35ad11125d83308806fa68bce1206d5c6bb3a29131fa7dd3fdedaa723d83e8b8764d52b05d5f5d132457ef74ee28554b859f8e287
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.1.14":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -1189,6 +1196,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "albumio@workspace:."
   dependencies:
+    "@spotify/web-api-ts-sdk": "npm:^1.1.2"
     "@types/jest": "npm:^29.5.11"
     "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
     "@typescript-eslint/parser": "npm:^6.13.2"
