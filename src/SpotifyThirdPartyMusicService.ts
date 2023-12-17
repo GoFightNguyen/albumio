@@ -1,11 +1,12 @@
 import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { Album } from './Album';
+import { Config } from './Config';
 import { ThirdPartyMusicService } from './ThirdPartyMusicService';
 
 export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
   private readonly _client: SpotifyApi;
 
-  constructor(clientId: string, clientSecret: string) {
+  constructor({ clientId, clientSecret }: Config) {
     this._client = SpotifyApi.withClientCredentials(clientId, clientSecret);
   }
 

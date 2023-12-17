@@ -47,10 +47,10 @@ describe('Feature: Adding Albums', () => {
   `,
     async () => {
       const albumRepository = new InMemoryAlbumRepository();
-      const thirdPartyMusicService = new SpotifyThirdPartyMusicService(
-        'abc',
-        '123',
-      );
+      const thirdPartyMusicService = new SpotifyThirdPartyMusicService({
+        clientId: 'abc',
+        clientSecret: '123',
+      });
       const sut = AlbumService.create({
         albumRepository,
         thirdPartyMusicService,
