@@ -1,4 +1,6 @@
+import { Config } from './Config';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
+import 'dotenv/config';
 
 describe.only('SpotifyThirdPartyMusicService', () => {
   describe('getAlbum', () => {
@@ -10,6 +12,15 @@ describe.only('SpotifyThirdPartyMusicService', () => {
       await expect(sut.getAlbum('123')).rejects.toThrow(
         /failed to get access token/i,
       );
+    });
+
+    test('should throw an error when the album cannot be found', async () => {
+      const config: Config = {
+        clientId: process.env.SPOTIFY_CLIENT_ID!,
+        clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
+      };
+      const sut = SpotifyThirdPartyMusicService.fromConfig(config);
+      await expect(sut.getAlbum('123')).rejects.toThrow(/invalid id/i);
     });
   });
 });
