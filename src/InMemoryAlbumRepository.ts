@@ -1,5 +1,5 @@
-import { Album } from './Album';
-import { AlbumRepository } from './AlbumRepository';
+import { Album } from './domain/Album';
+import { AlbumRepository } from './domain/AlbumRepository';
 
 export class InMemoryAlbumRepository implements AlbumRepository {
   private readonly _albums: Album[] = [];

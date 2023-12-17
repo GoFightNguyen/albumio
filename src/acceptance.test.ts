@@ -1,7 +1,7 @@
-import { Album } from './Album';
-import { AlbumRepository } from './AlbumRepository';
+import { Album } from './domain/Album';
+import { AlbumRepository } from './domain/AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
-import * as AlbumService from './AlbumService';
+import * as AlbumService from './domain/AlbumService';
 import { SpotifyThirdPartyMusicService } from './spotify/SpotifyThirdPartyMusicService';
 import { DotenvSpotifyConfig } from './spotify/DotenvSpotifyConfig';
 
