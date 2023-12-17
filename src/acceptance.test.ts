@@ -47,7 +47,7 @@ describe('Feature: Adding Albums', () => {
   `,
     async () => {
       const albumRepository = new InMemoryAlbumRepository();
-      const thirdPartyMusicService = new SpotifyThirdPartyMusicService({
+      const thirdPartyMusicService = SpotifyThirdPartyMusicService.fromConfig({
         clientId: 'abc',
         clientSecret: '123',
       });

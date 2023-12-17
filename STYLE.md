@@ -55,6 +55,13 @@ This section describes guidelines for designing APIs.
        /* ... */
      }
 
+     // If the instantiation process is based on a specific value, use `from*`.
+     // The most common example of this is reading from configuration.
+     // Use a second parameter in case additional options are needed.
+     static fromConfig(config: Config, deps: { logger: Logger }) {
+       /* ... */
+     }
+
      private constructor(/* ... */) {
        /* ... */
      }

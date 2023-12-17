@@ -3,7 +3,7 @@ import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 describe.only('SpotifyThirdPartyMusicService', () => {
   describe('getAlbum', () => {
     test('should throw an error when unable to authenticate', async () => {
-      const sut = new SpotifyThirdPartyMusicService({
+      const sut = SpotifyThirdPartyMusicService.fromConfig({
         clientId: 'abc',
         clientSecret: '123',
       });
