@@ -1,3 +1,4 @@
+import { Album } from './Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
 
@@ -17,6 +18,19 @@ describe.only('SpotifyThirdPartyMusicService', () => {
       const config = DotenvSpotifyConfig.create();
       const sut = SpotifyThirdPartyMusicService.fromConfig(config);
       await expect(sut.getAlbum('123')).rejects.toThrow(/invalid id/i);
+    });
+
+    test('should return the domain Album', async () => {
+      const sut = SpotifyThirdPartyMusicService.fromConfig(
+        DotenvSpotifyConfig.create(),
+      );
+      const actual = await sut.getAlbum('13nO8KPBlBff3c6qEDAUpd');
+      const expected: Album = {
+        metadata: {
+          name: 'Canopy',
+        },
+      };
+      expect(actual).toEqual(expected);
     });
   });
 });

@@ -40,29 +40,26 @@ describe('Feature: Adding Albums', () => {
     expect(findMatchingAlbum(albums, album4)).toBeDefined();
   });
 
-  test.failing(
-    `
+  test(`
   Given I use Spotify
   When I add an Album by Spotify ID 13nO8KPBlBff3c6qEDAUpd
   Then the Album "Canopy" is added to my catalog
-  `,
-    async () => {
-      const config = DotenvSpotifyConfig.create();
-      const albumRepository = new InMemoryAlbumRepository();
-      const thirdPartyMusicService =
-        SpotifyThirdPartyMusicService.fromConfig(config);
-      const sut = AlbumService.create({
-        albumRepository,
-        thirdPartyMusicService,
-      });
+  `, async () => {
+    const config = DotenvSpotifyConfig.create();
+    const albumRepository = new InMemoryAlbumRepository();
+    const thirdPartyMusicService =
+      SpotifyThirdPartyMusicService.fromConfig(config);
+    const sut = AlbumService.create({
+      albumRepository,
+      thirdPartyMusicService,
+    });
 
-      await sut.add('13nO8KPBlBff3c6qEDAUpd');
+    await sut.add('13nO8KPBlBff3c6qEDAUpd');
 
-      const albums = await albumRepository.all();
-      const expected = new SeedAlbum('Canopy');
-      expect(findMatchingAlbum(albums, expected)).toBeDefined();
-    },
-  );
+    const albums = await albumRepository.all();
+    const expected = new SeedAlbum('Canopy');
+    expect(findMatchingAlbum(albums, expected)).toBeDefined();
+  });
 
   const findMatchingAlbum = (albums: Album[], album: Album) =>
     albums.find((a) => a.metadata.name === album.metadata.name);
