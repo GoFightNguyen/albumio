@@ -6,12 +6,15 @@ import { ThirdPartyMusicService } from './ThirdPartyMusicService';
 export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
   private readonly _client: SpotifyApi;
 
-  private constructor({ clientId, clientSecret }: Config) {
+  private constructor(clientId: string, clientSecret: string) {
     this._client = SpotifyApi.withClientCredentials(clientId, clientSecret);
   }
 
   static fromConfig(config: Config) {
-    return new SpotifyThirdPartyMusicService(config);
+    return new SpotifyThirdPartyMusicService(
+      config.clientId,
+      config.clientSecret,
+    );
   }
 
   async getAlbum(thirdPartyId: string): Promise<Album> {
