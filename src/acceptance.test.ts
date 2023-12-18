@@ -75,7 +75,10 @@ class SeedAlbum implements Album {
   readonly apiVersion = 'albumio/v1alpha1';
   readonly kind = 'Album';
   readonly metadata: { name: string; annotations: AlbumAnnotations };
-  readonly spec: AlbumSpec = { releaseDate: new Date('2017-02-03') };
+  readonly spec: AlbumSpec = {
+    label: 'indie tribe.',
+    releaseDate: new Date('2017-02-03'),
+  };
 
   constructor(name: string) {
     this.metadata = {

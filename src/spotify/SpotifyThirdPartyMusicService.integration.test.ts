@@ -41,6 +41,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
           },
         },
         spec: {
+          label: 'indie tribe.',
           releaseDate: new Date('2017-02-03'),
         },
       };

@@ -34,6 +34,7 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
         },
       },
       spec: {
+        label: album.label,
         releaseDate: new Date(album.release_date),
       },
     };

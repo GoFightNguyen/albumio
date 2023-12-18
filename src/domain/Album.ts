@@ -56,7 +56,7 @@ export interface Album {
 export const ANNOTATION_ALBUM_SPOTIFY_ID = 'spotify.com/id';
 
 /**
- * The Spotify resource identifier of the Album.
+ * The Spotify resource identifier (URI) of the Album.
  *
  * @remarks
  *
@@ -74,7 +74,11 @@ export interface AlbumAnnotations extends Record<string, string> {
 
 export interface AlbumSpec {
   /**
-   * The release date of the Album.
+   * The label associated with the Album.
+   */
+  label: string;
+  /**
+   * The date the Album was released.
    */
   releaseDate: Date;
 }
