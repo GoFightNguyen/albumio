@@ -33,6 +33,10 @@ export interface Album {
      */
     annotations: AlbumAnnotations;
   };
+  /**
+   * The specification data describing the Album itself.
+   */
+  spec: AlbumSpec;
 }
 
 /**
@@ -66,4 +70,11 @@ export const ANNOTATION_ALBUM_SPOTIFY_URI = 'spotify.com/uri';
 export interface AlbumAnnotations extends Record<string, string> {
   [ANNOTATION_ALBUM_SPOTIFY_ID]: string;
   [ANNOTATION_ALBUM_SPOTIFY_URI]: string;
+}
+
+export interface AlbumSpec {
+  /**
+   * The release date of the Album.
+   */
+  releaseDate: Date;
 }

@@ -40,8 +40,15 @@ describe.only('SpotifyThirdPartyMusicService', () => {
               'spotify:album:13nO8KPBlBff3c6qEDAUpd',
           },
         },
+        spec: {
+          releaseDate: new Date('2017-02-03'),
+        },
       };
       expect(actual).toEqual(expected);
     });
   });
 });
+
+// TODO: label, UPC, artists, acceptance test with mulitple albums
+// TODO: what if release date precision is not day
+// TODO: what if album is an EP

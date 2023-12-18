@@ -3,6 +3,7 @@ import {
   ANNOTATION_ALBUM_SPOTIFY_URI,
   Album,
   AlbumAnnotations,
+  AlbumSpec,
 } from './domain/Album';
 import { AlbumRepository } from './domain/AlbumRepository';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
@@ -73,7 +74,8 @@ describe('Feature: Adding Albums', () => {
 class SeedAlbum implements Album {
   readonly apiVersion = 'albumio/v1alpha1';
   readonly kind = 'Album';
-  metadata: { name: string; annotations: AlbumAnnotations };
+  readonly metadata: { name: string; annotations: AlbumAnnotations };
+  readonly spec: AlbumSpec = { releaseDate: new Date('2017-02-03') };
 
   constructor(name: string) {
     this.metadata = {

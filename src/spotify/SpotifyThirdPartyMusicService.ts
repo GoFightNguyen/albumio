@@ -33,6 +33,9 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
           [ANNOTATION_ALBUM_SPOTIFY_URI]: album.uri,
         },
       },
+      spec: {
+        releaseDate: new Date(album.release_date),
+      },
     };
     return result;
   }
