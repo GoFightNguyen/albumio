@@ -81,4 +81,18 @@ export interface AlbumSpec {
    * The date the Album was released.
    */
   releaseDate: Date;
+  /**
+   * The Universal Product Code (UPC) for the Album.
+   *
+   * @remarks
+   *
+   * A UPC conssists of 12 digits.
+   *
+   * See also:
+   *
+   * {@link https://en.wikipedia.org/wiki/Universal_Product_Code}
+   *
+   * {@link https://releese.io/article/what-is-an-album-upc-code-and-what-is-it-used-for/}
+   */
+  upc: number;
 }

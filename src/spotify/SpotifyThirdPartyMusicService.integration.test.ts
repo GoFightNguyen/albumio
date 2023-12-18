@@ -43,6 +43,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
         spec: {
           label: 'indie tribe.',
           releaseDate: new Date('2017-02-03'),
+          upc: 859719342136,
         },
       };
       expect(actual).toEqual(expected);
@@ -50,6 +51,6 @@ describe.only('SpotifyThirdPartyMusicService', () => {
   });
 });
 
-// TODO: label, UPC, artists, acceptance test with mulitple albums
+// TODO: artists, acceptance test with mulitple albums
 // TODO: what if release date precision is not day
 // TODO: what if album is an EP

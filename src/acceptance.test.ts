@@ -78,6 +78,7 @@ class SeedAlbum implements Album {
   readonly spec: AlbumSpec = {
     label: 'indie tribe.',
     releaseDate: new Date('2017-02-03'),
+    upc: 859719342136,
   };
 
   constructor(name: string) {
