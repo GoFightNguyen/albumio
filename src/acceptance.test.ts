@@ -76,6 +76,7 @@ class SeedAlbum implements Album {
   readonly kind = 'Album';
   readonly metadata: { name: string; annotations: AlbumAnnotations };
   readonly spec: AlbumSpec = {
+    artist: 'nobigdyl.',
     label: 'indie tribe.',
     releaseDate: new Date('2017-02-03'),
     upc: 859719342136,

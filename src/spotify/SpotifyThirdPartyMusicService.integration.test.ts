@@ -41,6 +41,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
           },
         },
         spec: {
+          artist: 'nobigdyl.',
           label: 'indie tribe.',
           releaseDate: new Date('2017-02-03'),
           upc: 859719342136,
@@ -51,6 +52,7 @@ describe.only('SpotifyThirdPartyMusicService', () => {
   });
 });
 
-// TODO: artists, acceptance test with mulitple albums
+// TODO: acceptance test with mulitple albums
 // TODO: what if release date precision is not day
 // TODO: what if album is an EP
+// TODO: multiple artists

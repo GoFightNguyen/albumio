@@ -74,6 +74,10 @@ export interface AlbumAnnotations extends Record<string, string> {
 
 export interface AlbumSpec {
   /**
+   * The Artist of the Album.
+   */
+  artist: string;
+  /**
    * The label associated with the Album.
    */
   label: string;
