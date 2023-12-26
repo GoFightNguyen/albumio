@@ -1,11 +1,4 @@
-import {
-  ANNOTATION_ALBUM_SPOTIFY_ID,
-  ANNOTATION_ALBUM_SPOTIFY_URI,
-  Album,
-  AlbumAnnotations,
-  AlbumSpec,
-} from './domain/Album';
-import { AlbumRepository } from './domain/AlbumRepository';
+import { Album } from './domain/Album';
 import { InMemoryAlbumRepository } from './InMemoryAlbumRepository';
 import * as AlbumService from './domain/AlbumService';
 import { SpotifyThirdPartyMusicService } from './spotify/SpotifyThirdPartyMusicService';
@@ -13,43 +6,11 @@ import { DotenvSpotifyConfig } from './spotify/DotenvSpotifyConfig';
 
 describe('Feature: Adding Albums', () => {
   test(`
-  Given these albums are already in my collection:
-  'album 1',
-  'album 2'
-  When adding these albums:
-  'album 3'
-  'album 4'
-  Then my collection is:
-  'album 1'
-  'album 2'
-  'album 3'
-  'album 4'`, async () => {
-    // Given
-    const album1: Album = new SeedAlbum('album 1');
-    const album2: Album = new SeedAlbum('album 2');
-    const sut: AlbumRepository = new InMemoryAlbumRepository();
-    await sut.add(album1);
-    await sut.add(album2);
-
-    // When
-    const album3: Album = new SeedAlbum('album 3');
-    const album4: Album = new SeedAlbum('album 4');
-    await sut.add(album3);
-    await sut.add(album4);
-
-    // Then
-    const albums = await sut.all();
-    expect(albums.length).toBe(4);
-    expect(findMatchingAlbum(albums, album1)).toBeDefined();
-    expect(findMatchingAlbum(albums, album2)).toBeDefined();
-    expect(findMatchingAlbum(albums, album3)).toBeDefined();
-    expect(findMatchingAlbum(albums, album4)).toBeDefined();
-  });
-
-  test(`
   Given I use Spotify
   When I add an Album by Spotify ID 13nO8KPBlBff3c6qEDAUpd
+  And I add an Album by Spotify ID 1oDkUnjCBAHsaQtr0J0s3t
   Then the Album "Canopy" is added to my catalog
+  And the Album "Let the Trap Say Amen" is added to my catalog
   `, async () => {
     const config = DotenvSpotifyConfig.create();
     const albumRepository = new InMemoryAlbumRepository();
@@ -61,34 +22,13 @@ describe('Feature: Adding Albums', () => {
     });
 
     await sut.add('13nO8KPBlBff3c6qEDAUpd');
+    await sut.add('1oDkUnjCBAHsaQtr0J0s3t');
 
     const albums = await albumRepository.all();
-    const expected = new SeedAlbum('Canopy');
-    expect(findMatchingAlbum(albums, expected)).toBeDefined();
+    expect(findMatchingAlbum(albums, 'Canopy')).toBeDefined();
+    expect(findMatchingAlbum(albums, 'Let the Trap Say Amen')).toBeDefined();
   });
 
-  const findMatchingAlbum = (albums: Album[], album: Album) =>
-    albums.find((a) => a.metadata.name === album.metadata.name);
+  const findMatchingAlbum = (albums: Album[], albumName: string) =>
+    albums.find((a) => a.metadata.name === albumName);
 });
-
-class SeedAlbum implements Album {
-  readonly apiVersion = 'albumio/v1alpha1';
-  readonly kind = 'Album';
-  readonly metadata: { name: string; annotations: AlbumAnnotations };
-  readonly spec: AlbumSpec = {
-    artist: 'nobigdyl.',
-    label: 'indie tribe.',
-    releaseDate: new Date('2017-02-03'),
-    upc: 859719342136,
-  };
-
-  constructor(name: string) {
-    this.metadata = {
-      name,
-      annotations: {
-        [ANNOTATION_ALBUM_SPOTIFY_ID]: '13nO8KPBlBff3c6qEDAUpd',
-        [ANNOTATION_ALBUM_SPOTIFY_URI]: 'spotify:album:13nO8KPBlBff3c6qEDAUpd',
-      },
-    };
-  }
-}

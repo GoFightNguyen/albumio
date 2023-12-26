@@ -52,7 +52,6 @@ describe.only('SpotifyThirdPartyMusicService', () => {
   });
 });
 
-// TODO: acceptance test with mulitple albums
 // TODO: what if release date precision is not day
 // TODO: what if album is an EP
 // TODO: multiple artists
