@@ -7,10 +7,12 @@ import { DotenvSpotifyConfig } from './spotify/DotenvSpotifyConfig';
 describe('Feature: Adding Albums', () => {
   test(`
   Given I use Spotify
-  When I add an Album by Spotify ID 13nO8KPBlBff3c6qEDAUpd
-  And I add an Album by Spotify ID 1oDkUnjCBAHsaQtr0J0s3t
-  Then the Album "Canopy" is added to my catalog
-  And the Album "Let the Trap Say Amen" is added to my catalog
+  When I add Albums by Spotify ID:
+    13nO8KPBlBff3c6qEDAUpd
+    1oDkUnjCBAHsaQtr0J0s3t
+  Then the following Albums are added to my catalog:
+    Canopy
+    Let the Trap Say Amen
   `, async () => {
     const config = DotenvSpotifyConfig.create();
     const albumRepository = new InMemoryAlbumRepository();
