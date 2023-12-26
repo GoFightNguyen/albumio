@@ -4,6 +4,7 @@ import {
   Album,
   AlbumAnnotations,
   AlbumSpec,
+  AlbumType,
 } from '../domain/Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
@@ -57,11 +58,27 @@ describe.only('SpotifyThirdPartyMusicService', () => {
         .withUpc(814509011159);
       expect(actual).toEqual(expected);
     });
+
+    test('should return the domain Album when an EP', async () => {
+      const sut = SpotifyThirdPartyMusicService.fromConfig(
+        DotenvSpotifyConfig.create(),
+      );
+      const actual = await sut.getAlbum('3OFbKnRMtsZxMFkW0eKeqI');
+      const expected: Album = new AlbumHelper(
+        '3OFbKnRMtsZxMFkW0eKeqI',
+        'Circle of Life',
+      )
+        .withArtists('Aha Gazelle')
+        .withLabel('ALIENZ ALIVE')
+        .withReleaseDate('2023-11-24')
+        .withTypeEP()
+        .withUpc(810482891696);
+      expect(actual).toEqual(expected);
+    });
   });
 });
 
 // TODO: what if release date precision is not day
-// TODO: what if album is an EP
 
 class AlbumHelper implements Album {
   readonly apiVersion = 'albumio/v1alpha1';
@@ -71,6 +88,7 @@ class AlbumHelper implements Album {
     artists: [],
     label: '',
     releaseDate: new Date(),
+    type: AlbumType.Album,
     upc: 1,
   };
 
@@ -96,6 +114,11 @@ class AlbumHelper implements Album {
 
   withReleaseDate(val: string) {
     this.spec.releaseDate = new Date(val);
+    return this;
+  }
+
+  withTypeEP() {
+    this.spec.type = AlbumType.EP;
     return this;
   }
 

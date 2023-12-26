@@ -3,6 +3,7 @@ import {
   ANNOTATION_ALBUM_SPOTIFY_ID,
   ANNOTATION_ALBUM_SPOTIFY_URI,
   Album,
+  AlbumType,
 } from '../domain/Album';
 import { SpotifyConfig } from './SpotifyConfig';
 import { ThirdPartyMusicService } from '../domain/ThirdPartyMusicService';
@@ -37,6 +38,7 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
         artists: album.artists.map((a) => a.name),
         label: album.label,
         releaseDate: new Date(album.release_date),
+        type: album.album_type === 'single' ? AlbumType.EP : AlbumType.Album,
         upc: Number(album.external_ids.upc),
       },
     };

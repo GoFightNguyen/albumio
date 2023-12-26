@@ -72,6 +72,11 @@ export interface AlbumAnnotations extends Record<string, string> {
   [ANNOTATION_ALBUM_SPOTIFY_URI]: string;
 }
 
+export enum AlbumType {
+  Album = 'Album',
+  EP = 'EP',
+}
+
 export interface AlbumSpec {
   /**
    * The Artists of the Album.
@@ -85,6 +90,10 @@ export interface AlbumSpec {
    * The date the Album was released.
    */
   releaseDate: Date;
+  /**
+   * The type of the Album, such as EP.
+   */
+  type: AlbumType;
   /**
    * The Universal Product Code (UPC) for the Album.
    *
