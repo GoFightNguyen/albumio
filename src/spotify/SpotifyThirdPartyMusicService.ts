@@ -34,7 +34,7 @@ export class SpotifyThirdPartyMusicService implements ThirdPartyMusicService {
         },
       },
       spec: {
-        artist: album.artists[0].name,
+        artists: album.artists.map((a) => a.name),
         label: album.label,
         releaseDate: new Date(album.release_date),
         upc: Number(album.external_ids.upc),

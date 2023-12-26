@@ -41,10 +41,36 @@ describe.only('SpotifyThirdPartyMusicService', () => {
           },
         },
         spec: {
-          artist: 'nobigdyl.',
+          artists: ['nobigdyl.'],
           label: 'indie tribe.',
           releaseDate: new Date('2017-02-03'),
           upc: 859719342136,
+        },
+      };
+      expect(actual).toEqual(expected);
+    });
+
+    test('should return the domain Album when multiple artists', async () => {
+      const sut = SpotifyThirdPartyMusicService.fromConfig(
+        DotenvSpotifyConfig.create(),
+      );
+      const actual = await sut.getAlbum('1oDkUnjCBAHsaQtr0J0s3t');
+      const expected: Album = {
+        apiVersion: 'albumio/v1alpha1',
+        kind: 'Album',
+        metadata: {
+          name: 'Let the Trap Say Amen',
+          annotations: {
+            [ANNOTATION_ALBUM_SPOTIFY_ID]: '1oDkUnjCBAHsaQtr0J0s3t',
+            [ANNOTATION_ALBUM_SPOTIFY_URI]:
+              'spotify:album:1oDkUnjCBAHsaQtr0J0s3t',
+          },
+        },
+        spec: {
+          artists: ['Lecrae', 'Zaytoven'],
+          label: 'Reach Records',
+          releaseDate: new Date('2018-06-22'),
+          upc: 814509011159,
         },
       };
       expect(actual).toEqual(expected);
@@ -54,4 +80,3 @@ describe.only('SpotifyThirdPartyMusicService', () => {
 
 // TODO: what if release date precision is not day
 // TODO: what if album is an EP
-// TODO: multiple artists
