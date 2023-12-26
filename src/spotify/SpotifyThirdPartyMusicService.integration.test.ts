@@ -2,6 +2,8 @@ import {
   ANNOTATION_ALBUM_SPOTIFY_ID,
   ANNOTATION_ALBUM_SPOTIFY_URI,
   Album,
+  AlbumAnnotations,
+  AlbumSpec,
 } from '../domain/Album';
 import { DotenvSpotifyConfig } from './DotenvSpotifyConfig';
 import { SpotifyThirdPartyMusicService } from './SpotifyThirdPartyMusicService';
@@ -29,24 +31,14 @@ describe.only('SpotifyThirdPartyMusicService', () => {
         DotenvSpotifyConfig.create(),
       );
       const actual = await sut.getAlbum('13nO8KPBlBff3c6qEDAUpd');
-      const expected: Album = {
-        apiVersion: 'albumio/v1alpha1',
-        kind: 'Album',
-        metadata: {
-          name: 'Canopy',
-          annotations: {
-            [ANNOTATION_ALBUM_SPOTIFY_ID]: '13nO8KPBlBff3c6qEDAUpd',
-            [ANNOTATION_ALBUM_SPOTIFY_URI]:
-              'spotify:album:13nO8KPBlBff3c6qEDAUpd',
-          },
-        },
-        spec: {
-          artists: ['nobigdyl.'],
-          label: 'indie tribe.',
-          releaseDate: new Date('2017-02-03'),
-          upc: 859719342136,
-        },
-      };
+      const expected: Album = new AlbumHelper(
+        '13nO8KPBlBff3c6qEDAUpd',
+        'Canopy',
+      )
+        .withArtists('nobigdyl.')
+        .withLabel('indie tribe.')
+        .withReleaseDate('2017-02-03')
+        .withUpc(859719342136);
       expect(actual).toEqual(expected);
     });
 
@@ -55,24 +47,14 @@ describe.only('SpotifyThirdPartyMusicService', () => {
         DotenvSpotifyConfig.create(),
       );
       const actual = await sut.getAlbum('1oDkUnjCBAHsaQtr0J0s3t');
-      const expected: Album = {
-        apiVersion: 'albumio/v1alpha1',
-        kind: 'Album',
-        metadata: {
-          name: 'Let the Trap Say Amen',
-          annotations: {
-            [ANNOTATION_ALBUM_SPOTIFY_ID]: '1oDkUnjCBAHsaQtr0J0s3t',
-            [ANNOTATION_ALBUM_SPOTIFY_URI]:
-              'spotify:album:1oDkUnjCBAHsaQtr0J0s3t',
-          },
-        },
-        spec: {
-          artists: ['Lecrae', 'Zaytoven'],
-          label: 'Reach Records',
-          releaseDate: new Date('2018-06-22'),
-          upc: 814509011159,
-        },
-      };
+      const expected: Album = new AlbumHelper(
+        '1oDkUnjCBAHsaQtr0J0s3t',
+        'Let the Trap Say Amen',
+      )
+        .withArtists('Lecrae', 'Zaytoven')
+        .withLabel('Reach Records')
+        .withReleaseDate('2018-06-22')
+        .withUpc(814509011159);
       expect(actual).toEqual(expected);
     });
   });
@@ -80,3 +62,45 @@ describe.only('SpotifyThirdPartyMusicService', () => {
 
 // TODO: what if release date precision is not day
 // TODO: what if album is an EP
+
+class AlbumHelper implements Album {
+  readonly apiVersion = 'albumio/v1alpha1';
+  readonly kind = 'Album';
+  readonly metadata: { name: string; annotations: AlbumAnnotations };
+  readonly spec: AlbumSpec = {
+    artists: [],
+    label: '',
+    releaseDate: new Date(),
+    upc: 1,
+  };
+
+  constructor(id: string, name: string) {
+    this.metadata = {
+      name,
+      annotations: {
+        [ANNOTATION_ALBUM_SPOTIFY_ID]: id,
+        [ANNOTATION_ALBUM_SPOTIFY_URI]: `spotify:album:${id}`,
+      },
+    };
+  }
+
+  withArtists(...val: string[]) {
+    this.spec.artists = val;
+    return this;
+  }
+
+  withLabel(val: string) {
+    this.spec.label = val;
+    return this;
+  }
+
+  withReleaseDate(val: string) {
+    this.spec.releaseDate = new Date(val);
+    return this;
+  }
+
+  withUpc(val: number) {
+    this.spec.upc = val;
+    return this;
+  }
+}
